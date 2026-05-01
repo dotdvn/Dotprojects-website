@@ -523,7 +523,7 @@ section {
     .hero, section { padding: 4rem 24px; }
     .footer { padding: 4rem 24px 2rem 24px; }
     
-    .hero-content h1 { font-size: 15vw; }
+    .hero-content h1 { font-size: 24vw; }
     
     .hero-bottom {
         bottom: 24px;
