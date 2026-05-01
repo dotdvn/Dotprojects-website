@@ -29,7 +29,6 @@ body {
     font-family: var(--font-body);
     background-color: var(--color-navy);
     color: var(--color-white);
-    cursor: none;
     overflow-x: hidden;
 }
 
@@ -97,7 +96,6 @@ body.no-scroll {
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    cursor: none;
     transition: background var(--transition-fluid), color var(--transition-fluid);
 }
 
@@ -525,7 +523,7 @@ section {
     .hero, section { padding: 4rem 24px; }
     .footer { padding: 4rem 24px 2rem 24px; }
     
-    .hero-content h1 { font-size: 24vw; }
+    .hero-content h1 { font-size: 15vw; }
     
     .hero-bottom {
         bottom: 24px;
@@ -558,7 +556,6 @@ section {
     .featured, .split-grid { grid-template-columns: 1fr; gap: 3rem; }
     .featured-right { padding-left: 0; }
     .featured-heading { font-size: 3.5rem; }
-    .cyan-offset { transform: translate(-16px, 16px); }
     
     .capabilities-list, .capabilities-heading { grid-column: span 1; }
     .large-heading { font-size: 2.25rem; }
@@ -594,7 +591,6 @@ section {
     background-color: var(--color-white);
     color: var(--color-navy);
     border: none;
-    cursor: none;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -858,7 +854,21 @@ section {
     opacity: 0;
 }
 
-/* Hide default cursor on interactive elements */
-a, button, input {
-    cursor: none;
+/* Device Specific Cursor Handling */
+@media (pointer: fine) {
+    body, a, button, input, .chatbot-toggle, .btn-outline {
+        cursor: none !important;
+    }
+}
+
+@media (pointer: coarse), (max-width: 768px) {
+    .target-cursor {
+        display: none !important;
+    }
+    body {
+        cursor: auto;
+    }
+    a, button, .chatbot-toggle, .btn-outline {
+        cursor: pointer;
+    }
 }
