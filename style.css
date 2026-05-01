@@ -206,6 +206,14 @@ section {
     60% { transform: translateY(-5px); }
 }
 
+.center-scroll {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    margin-left: -24px; /* Centers the 48px width perfectly */
+    z-index: 10;
+}
+
 /* Portfolio */
 .portfolio {
     background-color: var(--color-white);
