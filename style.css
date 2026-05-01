@@ -29,8 +29,12 @@ body {
     font-family: var(--font-body);
     background-color: var(--color-navy);
     color: var(--color-white);
-    cursor: crosshair;
+    cursor: none;
     overflow-x: hidden;
+}
+
+body.no-scroll {
+    overflow: hidden;
 }
 
 /* Typography Utilities */
@@ -93,7 +97,7 @@ body {
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    cursor: crosshair;
+    cursor: none;
     transition: background var(--transition-fluid), color var(--transition-fluid);
 }
 
@@ -289,11 +293,16 @@ section {
 
 .cyan-offset {
     position: absolute;
-    inset: 0;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    height: 80%;
     background-color: var(--color-cyan);
-    opacity: 0.2;
-    transform: translate(-48px, 48px);
+    filter: blur(100px);
+    opacity: 0.15;
+    transform: translate(-50%, -50%);
     z-index: 0;
+    border-radius: 50%;
 }
 
 .featured-left img {
@@ -585,7 +594,7 @@ section {
     background-color: var(--color-white);
     color: var(--color-navy);
     border: none;
-    cursor: crosshair;
+    cursor: none;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -708,4 +717,148 @@ section {
     .chatbot-container { bottom: 20px; right: 20px; }
     .chatbot-toggle { width: 56px; height: 56px; }
     .chatbot-window { width: calc(100vw - 40px); height: 400px; }
+}
+
+/* Terminal Preloader */
+.terminal-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--color-navy);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 48px;
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--color-sage);
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.terminal-loader.hidden {
+    transform: translateY(-100vh);
+}
+
+.terminal-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.875rem;
+    line-height: 1.2;
+    height: 60vh;
+    overflow: hidden;
+}
+
+.terminal-line {
+    opacity: 0;
+    animation: fadeIn 0.1s forwards;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+.terminal-line .success { color: var(--color-cyan); text-shadow: 0 0 5px var(--color-cyan); }
+.terminal-line .warning { color: var(--color-beige); }
+.terminal-line .error { color: #EA4335; }
+.terminal-line .label { color: var(--color-taupe); }
+
+.loader-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+.loading-bar-container {
+    width: 100%;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.loading-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background-color: var(--color-cyan);
+    box-shadow: 0 0 10px var(--color-cyan);
+    transition: width 0.1s linear;
+}
+
+.massive-percentage {
+    font-size: 15vw;
+    line-height: 0.8;
+    color: var(--color-white);
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .terminal-loader { padding: 24px; }
+    .terminal-lines { height: 70vh; font-size: 0.75rem; }
+    .massive-percentage { font-size: 24vw; }
+}
+
+/* Targeting Bracket Cursor */
+.target-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, width, height;
+}
+
+.bracket {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border: 2px solid var(--color-cyan);
+    transition: border-color 0.3s;
+}
+
+.top-left { top: 0; left: 0; border-right: none; border-bottom: none; }
+.top-right { top: 0; right: 0; border-left: none; border-bottom: none; }
+.bottom-left { bottom: 0; left: 0; border-right: none; border-top: none; }
+.bottom-right { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+.target-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    background-color: var(--color-cyan);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s;
+}
+
+/* Hover States */
+.target-cursor.hovering {
+    width: 80px;
+    height: 80px;
+}
+
+.target-cursor.hovering .bracket {
+    border-color: var(--color-white);
+}
+
+.target-cursor.hovering .target-dot {
+    opacity: 0;
+}
+
+/* Hide default cursor on interactive elements */
+a, button, input {
+    cursor: none;
 }
