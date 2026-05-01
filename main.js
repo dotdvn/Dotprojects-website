@@ -131,6 +131,72 @@ document.addEventListener('DOMContentLoaded', () => {
             chatbotToggle.style.display = 'flex';
             setTimeout(() => { chatbotToggle.style.transform = 'scale(1)'; }, 10);
         });
+
+        // Chatbot API Logic
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const chatBody = document.getElementById('chatBody');
+
+        function addMessageToChat(text, senderClass) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `chat-message ${senderClass}`;
+            // Use textContent to prevent XSS
+            const p = document.createElement('p');
+            p.textContent = text;
+            msgDiv.appendChild(p);
+            chatBody.appendChild(msgDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        async function sendMessage() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            // Add user message
+            addMessageToChat(text, 'user-message');
+            chatInput.value = '';
+            
+            // Add typing indicator
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'chat-message bot-message typing-indicator';
+            typingDiv.innerHTML = '<p>PROCESSING...</p>';
+            chatBody.appendChild(typingDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            sendBtn.disabled = true;
+            chatInput.disabled = true;
+
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: text })
+                });
+
+                const data = await response.json();
+                
+                // Remove typing indicator
+                chatBody.removeChild(typingDiv);
+
+                if (response.ok) {
+                    addMessageToChat(data.reply, 'bot-message');
+                } else {
+                    addMessageToChat('ERROR: ' + (data.error || 'COMMUNICATION FAILURE'), 'bot-message');
+                }
+            } catch (error) {
+                chatBody.removeChild(typingDiv);
+                addMessageToChat('ERROR: NETWORK FAILURE', 'bot-message');
+            } finally {
+                sendBtn.disabled = false;
+                chatInput.disabled = false;
+                chatInput.focus();
+            }
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
     }
 
     // Targeting Bracket Cursor Logic

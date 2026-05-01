@@ -65,7 +65,7 @@
                 </div>
             </div>
             <div class="grid-item">
-                <div class="image-wrapper" style="aspect-ratio: 4/5;">
+                <div class="image-wrapper">
                     <img src="assets/rfid_premium.png" alt="Project 1 - RFID Attendance">
                     <div class="hover-overlay">
                         <div class="view-badge">VIEW</div>
@@ -158,14 +158,14 @@
                 <h3>DOT AI</h3>
                 <button id="closeChat" class="close-btn">&times;</button>
             </div>
-            <div class="chatbot-body">
+            <div class="chatbot-body" id="chatBody">
                 <div class="chat-message bot-message">
-                    <p>AI Integration Coming Soon...</p>
+                    <p>SYSTEM ONLINE. HOW CAN I ASSIST?</p>
                 </div>
             </div>
             <div class="chatbot-footer">
-                <input type="text" placeholder="Type a message..." disabled>
-                <button disabled>SEND</button>
+                <input type="text" id="chatInput" placeholder="Type a message...">
+                <button id="sendBtn">SEND</button>
             </div>
         </div>
         <button class="chatbot-toggle" id="chatbotToggle">

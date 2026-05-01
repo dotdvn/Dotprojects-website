@@ -667,8 +667,10 @@ section {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
     background-color: var(--color-navy);
+    overflow-y: auto;
+    gap: 12px;
 }
 
 .chat-message {
@@ -680,6 +682,15 @@ section {
     font-size: 0.9rem;
     border-bottom-left-radius: 0;
     line-height: 1.5;
+    align-self: flex-start;
+}
+
+.chat-message.user-message {
+    background-color: var(--color-cyan);
+    color: var(--color-navy);
+    align-self: flex-end;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 0;
 }
 
 .chatbot-footer {
@@ -712,9 +723,18 @@ section {
     padding: 0 16px;
     font-family: var(--font-heading);
     letter-spacing: 0.05em;
-    cursor: not-allowed;
+    cursor: pointer;
     border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.chatbot-footer button:hover {
+    background-color: var(--color-cyan);
+}
+
+.chatbot-footer button:disabled {
     opacity: 0.5;
+    cursor: not-allowed;
 }
 
 @media (max-width: 768px) {
