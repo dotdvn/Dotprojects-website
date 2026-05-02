@@ -6,16 +6,16 @@ if ('scrollRestoration' in history) {
 document.addEventListener('DOMContentLoaded', () => {
     // Force scroll to top on load
     window.scrollTo(0, 0);
-    
+
     // Preloader Logic
     const preloader = document.getElementById('preloader');
     const terminalLines = document.getElementById('terminal-lines');
     const loadingBar = document.getElementById('loading-bar');
     const loadingPercentage = document.getElementById('loading-percentage');
-    
+
     if (preloader) {
         document.body.classList.add('no-scroll');
-        
+
         const bootSequence = [
             'INIT_SYSTEM_BOOT_SEQUENCE_V4.2...',
             'LOADING_KERNEL_MODULES....... [OK]',
@@ -49,14 +49,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 line.className = 'terminal-line';
                 line.innerHTML = `<span class="label">sys@dot:~#</span> ${bootSequence[lineIndex]}`;
                 terminalLines.appendChild(line);
-                
+
                 // Auto-scroll to bottom
                 terminalLines.scrollTop = terminalLines.scrollHeight;
 
                 lineIndex++;
-                
+
                 // Random delay between lines for realism
-                const delay = Math.random() * 150 + 50; 
+                const delay = Math.random() * 150 + 50;
                 setTimeout(typeLine, delay);
             }
         };
@@ -66,10 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Non-linear progress for realism
                 const increment = Math.random() > 0.8 ? Math.random() * 15 : Math.random() * 5;
                 progress = Math.min(progress + increment, 100);
-                
+
                 loadingBar.style.width = `${progress}%`;
                 loadingPercentage.innerText = Math.floor(progress).toString().padStart(2, '0');
-                
+
                 const delay = Math.random() * 100 + 20;
                 setTimeout(updateProgress, delay);
             } else {
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Scroll reveal animation
     const autoReveals = document.querySelectorAll('.hero-content, .section-heading, .grid-item, .featured-left, .featured-right, .capabilities-list, .capabilities-heading, .testimonial-content, .footer-content');
-    
+
     autoReveals.forEach(el => {
         el.classList.add('reveal');
     });
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         rootMargin: "0px 0px -50px 0px"
     };
 
-    const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+    const revealOnScroll = new IntersectionObserver(function (entries, observer) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
             chatbotWindow.classList.add('active');
             chatbotToggle.style.transform = 'scale(0)';
             setTimeout(() => { chatbotToggle.style.display = 'none'; }, 300);
-            
+
             // Adjust height if on mobile
             if (window.visualViewport && window.innerWidth <= 768) {
                 chatbotWindow.style.height = `${window.visualViewport.height}px`;
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Add user message
             addMessageToChat(text, 'user-message');
             chatInput.value = '';
-            
+
             // Add typing indicator
             const typingDiv = document.createElement('div');
             typingDiv.className = 'chat-message bot-message typing-indicator';
@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 const data = await response.json();
-                
+
                 // Remove typing indicator
                 chatBody.removeChild(typingDiv);
 
@@ -216,33 +216,15 @@ document.addEventListener('DOMContentLoaded', () => {
         chatInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') sendMessage();
         });
-
-        // Mobile Keyboard Hack: Push UI up when input is focused
-        chatInput.addEventListener('focus', () => {
-            if (window.innerWidth <= 768) {
-                // Add padding to the bottom of the window to physically push the input field up
-                chatbotWindow.style.paddingBottom = '320px'; 
-                setTimeout(() => {
-                    if (chatBody) chatBody.scrollTop = chatBody.scrollHeight;
-                }, 100);
-            }
-        });
-
-        chatInput.addEventListener('blur', () => {
-            if (window.innerWidth <= 768) {
-                // Remove the padding when keyboard closes
-                chatbotWindow.style.paddingBottom = '0px';
-            }
-        });
     }
 
     // Targeting Bracket Cursor Logic
     const targetCursor = document.getElementById('target-cursor');
-    
+
     if (targetCursor) {
         let mouseX = window.innerWidth / 2;
         let mouseY = window.innerHeight / 2;
-        
+
         let cursorX = mouseX;
         let cursorY = mouseY;
 
@@ -256,17 +238,17 @@ document.addEventListener('DOMContentLoaded', () => {
             // Lerp towards mouse position
             cursorX += (mouseX - cursorX) * 0.2;
             cursorY += (mouseY - cursorY) * 0.2;
-            
+
             targetCursor.style.transform = `translate(calc(${cursorX}px - 50%), calc(${cursorY}px - 50%))`;
-            
+
             requestAnimationFrame(animateTargetCursor);
         }
-        
+
         animateTargetCursor();
 
         // Add hover effect for interactive elements
         const interactiveElements = document.querySelectorAll('a, button, .image-wrapper, .chatbot-toggle, .close-btn, input, .scroll-indicator');
-        
+
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 targetCursor.classList.add('hovering');
