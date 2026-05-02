@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOT PROJECTS - Works</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="fixed-nav">
+        <a href="index.html" class="back-link" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 8px; font-family: var(--font-heading); letter-spacing: 0.1em; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateX(-5px)'" onmouseout="this.style.transform='translateX(0)'">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            BACK
+        </a>
+        <div class="nav-links">
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section class="hero dark-section">
+        <div class="ambient-orb sage-orb"></div>
+        <div class="ambient-orb soft-blue-orb"></div>
+        <div class="hero-content">
+            <h1 class="anton-display">ALL</h1>
+            <h1 class="anton-display text-outline">PROJECTS</h1>
+        </div>
+        <div class="hero-bottom">
+            <p class="hero-desc">An archive of our comprehensive works in hardware engineering, IoT automation, and physical system design.</p>
+        </div>
+        <div class="scroll-indicator center-scroll">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        </div>
+    </section>
+
+    <section class="dark-section">
+        <div class="article-list" style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 4rem;">
+            
+            <div class="coming-soon-banner reveal" style="background-color: var(--color-charcoal); border: 1px solid rgba(183, 198, 194, 0.2); padding: 3rem; text-align: center; position: relative; overflow: hidden;">
+                <div class="cyan-offset" style="width: 200px; height: 200px; filter: blur(60px); opacity: 0.1;"></div>
+                <h3 class="anton-display" style="font-size: 2.5rem; color: var(--color-sage); letter-spacing: 0.1em; position: relative; z-index: 1;">FULL CASE STUDIES COMING SOON</h3>
+                <p class="taupe-text" style="margin-top: 1rem; font-size: 1.125rem; position: relative; z-index: 1;">We are currently compiling detailed technical breakdowns, schematics, and code snippets for these projects.</p>
+            </div>
+
+            <!-- Article 1 -->
+            <article class="article-item" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; border-bottom: 1px solid var(--color-taupe); padding-bottom: 4rem;">
+                <div class="image-wrapper reveal">
+                    <img src="assets/cnc_premium.png" alt="CNC Pen Plotter">
+                    <div class="hover-overlay">
+                        <div class="view-badge">READ</div>
+                    </div>
+                </div>
+                <div class="article-content reveal">
+                    <span class="taupe-label">Hardware / 2026</span>
+                    <h2 class="anton-display" style="font-size: 4rem; margin-bottom: 1rem; line-height: 1.1;">CNC PEN PLOTTER</h2>
+                    <p class="taupe-text" style="font-size: 1.125rem; line-height: 1.6; margin-bottom: 2rem;">A precision-engineered drawing machine capable of translating digital vector graphics into physical ink art. Built with custom firmware and high-torque stepper motors.</p>
+                    <a href="#" class="arrow-link">Read Article →</a>
+                </div>
+            </article>
+
+            <!-- Article 2 -->
+            <article class="article-item" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; border-bottom: 1px solid var(--color-taupe); padding-bottom: 4rem;">
+                <div class="article-content reveal" style="order: 2;">
+                    <span class="taupe-label">IoT Security / 2025</span>
+                    <h2 class="anton-display" style="font-size: 4rem; margin-bottom: 1rem; line-height: 1.1;">RFID ATTENDANCE</h2>
+                    <p class="taupe-text" style="font-size: 1.125rem; line-height: 1.6; margin-bottom: 2rem;">An enterprise-grade smart attendance system leveraging RFID technology and cloud synchronization to provide real-time tracking and comprehensive access logs.</p>
+                    <a href="#" class="arrow-link">Read Article →</a>
+                </div>
+                <div class="image-wrapper reveal" style="order: 1;">
+                    <img src="assets/rfid_premium.png" alt="RFID Attendance">
+                    <div class="hover-overlay">
+                        <div class="view-badge">READ</div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Article 3 -->
+            <article class="article-item" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+                <div class="image-wrapper reveal">
+                    <img src="assets/dot_projects_branding.png" alt="Dot Projects Core">
+                    <div class="hover-overlay">
+                        <div class="view-badge">READ</div>
+                    </div>
+                </div>
+                <div class="article-content reveal">
+                    <span class="taupe-label">Infrastructure / 2024</span>
+                    <h2 class="anton-display" style="font-size: 4rem; margin-bottom: 1rem; line-height: 1.1;">SMART HOME HUB</h2>
+                    <p class="taupe-text" style="font-size: 1.125rem; line-height: 1.6; margin-bottom: 2rem;">A centralized home automation controller integrating multiple protocols (Zigbee, WiFi, Bluetooth) into a unified interface with predictive AI routines.</p>
+                    <a href="#" class="arrow-link">Read Article →</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <footer id="contact" class="footer dark-section" style="padding-top: 4rem; padding-bottom: 2rem;">
+        <div class="footer-bottom" style="border-top: none; margin-top: 0; padding-top: 0;">
+            <div class="copyright">© 2026 DOT PROJECTS</div>
+            <div class="legal-links">
+                <a href="#">PRIVACY</a>
+                <a href="#">TERMS</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="target-cursor" id="target-cursor">
+        <div class="bracket top-left"></div>
+        <div class="bracket top-right"></div>
+        <div class="bracket bottom-left"></div>
+        <div class="bracket bottom-right"></div>
+        <div class="target-dot"></div>
+    </div>
+
+    <script src="main.js"></script>
+    <style>
+        @media (max-width: 768px) {
+            .article-item {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+            .article-item .article-content {
+                order: 2 !important;
+            }
+            .article-item .image-wrapper {
+                order: 1 !important;
+            }
+            .hero {
+                height: 40vh !important;
+                padding-top: 10vh !important;
+            }
+            .hero-content h1 {
+                font-size: 20vw !important;
+            }
+        }
+    </style>
+</body>
+</html>

@@ -90,9 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Scroll reveal animation
-    const reveals = document.querySelectorAll('.hero-content, .section-heading, .grid-item, .featured-left, .featured-right, .capabilities-list, .capabilities-heading, .testimonial-content, .footer-content');
+    const autoReveals = document.querySelectorAll('.hero-content, .section-heading, .grid-item, .featured-left, .featured-right, .capabilities-list, .capabilities-heading, .testimonial-content, .footer-content');
     
-    reveals.forEach(el => {
+    autoReveals.forEach(el => {
         el.classList.add('reveal');
     });
 
@@ -110,7 +110,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, revealOptions);
 
-    reveals.forEach(reveal => {
+    // Observe ALL elements with the reveal class, including manually added ones
+    const allReveals = document.querySelectorAll('.reveal');
+    allReveals.forEach(reveal => {
         revealOnScroll.observe(reveal);
     });
 
