@@ -18,7 +18,7 @@ export default async function handler(req, res) {
         // Define a strict system instruction to keep the AI in character
         const systemPrompt = `You are DOT AI, the intelligent virtual assistant for DOT PROJECTS. 
 DOT PROJECTS is an engineering and design studio specializing in Intelligent Hardware, IoT solutions, and Automation.
-Keep your responses very concise, professional, slightly technical, and perfectly formatted. Do not use emojis. Use a brutalist, robotic tone.`;
+Provide helpful, detailed, and professional responses. Do not use emojis. Maintain a knowledgeable and professional tone.`;
 
         const response = await fetch(
             `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
@@ -37,8 +37,8 @@ Keep your responses very concise, professional, slightly technical, and perfectl
                         parts: [{ text: message }]
                     }],
                     generationConfig: {
-                        temperature: 0.3,
-                        maxOutputTokens: 250,
+                        temperature: 0.5,
+                        maxOutputTokens: 800,
                     }
                 })
             }
