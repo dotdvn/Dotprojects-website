@@ -126,13 +126,30 @@ document.addEventListener('DOMContentLoaded', () => {
             chatbotWindow.classList.add('active');
             chatbotToggle.style.transform = 'scale(0)';
             setTimeout(() => { chatbotToggle.style.display = 'none'; }, 300);
+            
+            // Adjust height if on mobile
+            if (window.visualViewport && window.innerWidth <= 768) {
+                chatbotWindow.style.height = `${window.visualViewport.height}px`;
+            }
         });
 
         closeChat.addEventListener('click', () => {
             chatbotWindow.classList.remove('active');
             chatbotToggle.style.display = 'flex';
+            chatbotWindow.style.height = ''; // Reset height
             setTimeout(() => { chatbotToggle.style.transform = 'scale(1)'; }, 10);
         });
+
+        // Dynamic viewport adjustment for mobile keyboards
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', () => {
+                if (chatbotWindow.classList.contains('active') && window.innerWidth <= 768) {
+                    chatbotWindow.style.height = `${window.visualViewport.height}px`;
+                    const cBody = document.getElementById('chatBody');
+                    if (cBody) cBody.scrollTop = cBody.scrollHeight;
+                }
+            });
+        }
 
         // Chatbot API Logic
         const chatInput = document.getElementById('chatInput');
