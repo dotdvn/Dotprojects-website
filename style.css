@@ -326,6 +326,8 @@ section {
 
 .featured-right {
     padding-left: 3rem;
+    position: relative;
+    z-index: 10;
 }
 
 .featured-right p {
@@ -341,6 +343,9 @@ section {
     display: inline-flex;
     align-items: center;
     transition: transform var(--transition-fluid);
+    position: relative;
+    z-index: 20;
+    padding: 0.5rem 0;
 }
 
 .arrow-link:hover {
