@@ -216,6 +216,24 @@ document.addEventListener('DOMContentLoaded', () => {
         chatInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') sendMessage();
         });
+
+        // Mobile Keyboard Hack: Push UI up when input is focused
+        chatInput.addEventListener('focus', () => {
+            if (window.innerWidth <= 768) {
+                // Add padding to the bottom of the window to physically push the input field up
+                chatbotWindow.style.paddingBottom = '320px'; 
+                setTimeout(() => {
+                    if (chatBody) chatBody.scrollTop = chatBody.scrollHeight;
+                }, 100);
+            }
+        });
+
+        chatInput.addEventListener('blur', () => {
+            if (window.innerWidth <= 768) {
+                // Remove the padding when keyboard closes
+                chatbotWindow.style.paddingBottom = '0px';
+            }
+        });
     }
 
     // Targeting Bracket Cursor Logic
